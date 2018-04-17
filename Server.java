@@ -66,12 +66,11 @@ public class Server {
 
 						//Now all is good, write to the file and send the ack
 						fw.write(data);
-						generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 					} else {
 						//an issue so resend previous ack and DO NOT WRITE
-						generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 						System.out.println("Error in Packet, Sending ACK of old");
 					}
+					generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 				} else {
 					//r <= prob so packet loss!!!!
 					System.out.println("Packet loss, Sequence number= " + seqNumber);
@@ -88,7 +87,7 @@ public class Server {
 
 	private static void generateAndSendACK(DatagramSocket ssock, int seq, int senderPort, InetAddress senderIP) {
 		try {
-			//Make sequence number a binary string representation
+			//Make sequence number a binary string representation, needs padding to make 32 bits
 			String binaryString = Integer.toBinaryString(seq);
 			String pad = "";
 			for(int i = 0; i < 32 - binaryString.length(); i++) {
@@ -149,8 +148,8 @@ public class Server {
 	    sum = ~sum;
 	    sum = sum & 0xFFFF;
 
-	    System.out.println(sum);
-	    System.out.println(checksum);
+	    //System.out.println(sum);
+	    //System.out.println(checksum);
 
 	    // See if they are the same 
 	    return Long.parseLong(checksum) == sum;
