@@ -10,8 +10,7 @@ import java.util.*;
 
 public class Client {
 	static final String expectedDataPacketValue = "0101010101010101";
-	static final String ackPacket = "00000000000000001010101010101010";
-									 
+	static final String ackPacket = "00000000000000001010101010101010";								 
 	static final String expectedENDPacketValue = "1111111110000000";
 
 	static String serverHost;
@@ -162,6 +161,27 @@ public class Client {
 			DatagramPacket dataPack = new DatagramPacket(send, send.length, InetAddress.getByName(serverHost), serverPort);
 			clientToServer.send(dataPack);
 			System.out.println("Sent segment number " + seq);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+	}
+
+	private static void sendFinish() {
+		try {
+			//Make sequence number a binary string representation, needs padding to make 48 0 bits and then the expected ack value
+			String binaryString = expectedENDPacketValue;
+			String pad = "";
+			for(int i = 0; i < 48 - binaryString.length(); i++) {
+				pad += "0";
+			}
+			binaryString = pad + binaryString;
+
+			byte[] send = (binaryString).getBytes();
+			
+			DatagramPacket dataPack = new DatagramPacket(send, send.length, InetAddress.getByName(serverHost), serverPort);
+			clientToServer.send(dataPack);
+			System.out.println("Sent finish segment!!");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
