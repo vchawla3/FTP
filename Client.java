@@ -108,8 +108,6 @@ public class Client {
 					int ackSeqNo = Integer.parseInt(new String(Arrays.copyOfRange(ackdata, 0, 32)),2);
 					
         			String isACK = new String(Arrays.copyOfRange(ackdata, 32, 64));
-        			System.out.println(ackSeqNo);
-					System.out.println(isACK);
         			if (isACK.equals(ackPacket)) {
         				//confirmed it is an ack packet
         				if(ackSeqNo == sequenceMax){
@@ -130,7 +128,7 @@ public class Client {
 				}
 				
 			}
-			//sendFinish();
+			sendFinish();
 			System.out.println("File done sending");
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -53,10 +53,12 @@ public class Server {
 				// Get other headers
           		int checksum = getCheckSum(receivedData);
           		String dataPacketValue = getDataPacketIndicator(receivedData);
-
+				
+				System.out.println(dataPacketValue);
 	          	//Check if dataPacket is a endpacket
 	          	if (dataPacketValue.equals(expectedENDPacketValue)) {
           			//connection done sending file, connection over
+          			System.out.println("Final Segment recieved");
           			loop = false;
 	          	} else if (random > prob) {
 	          		// Rest of the data
