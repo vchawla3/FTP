@@ -11,6 +11,7 @@ import java.util.*;
 public class Client {
 	static final String expectedDataPacketValue = "0101010101010101";
 	static final String ackPacket = "00000000000000001010101010101010";
+									 
 	static final String expectedENDPacketValue = "1111111110000000";
 
 	static String serverHost;
@@ -104,8 +105,12 @@ public class Client {
 					clientToServer.receive(ackDGPacket);
 
 					byte[] ackdata = ackDGPacket.getData();
+
 					int ackSeqNo = Integer.parseInt(new String(Arrays.copyOfRange(ackdata, 0, 31)));
-        			String isACK = new String(Arrays.copyOfRange(ackdata, 32, 63));
+					
+        			String isACK = new String(Arrays.copyOfRange(ackdata, 32, 64));
+        			System.out.println(ackSeqNo);
+					System.out.println(isACK);
         			if (isACK.equals(ackPacket)) {
         				//confirmed it is an ack packet
         				if(ackSeqNo == sequenceMax){
@@ -135,7 +140,7 @@ public class Client {
 
 	private static void rdt_send(int seq, byte[] data) {
 		try {
-			System.out.println(data);
+			//System.out.println(data);
 			//Make sequence number a binary string representation, needs padding to make 32 bits
 			String binaryString = Integer.toBinaryString(seq);
 			String pad = "";
@@ -156,6 +161,7 @@ public class Client {
 
 			DatagramPacket dataPack = new DatagramPacket(send, send.length, InetAddress.getByName(serverHost), serverPort);
 			clientToServer.send(dataPack);
+			System.out.println("Sent segment number " + seq);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -201,10 +207,8 @@ public class Client {
 	    //System.out.println(sum);
 	    //System.out.println(checksum);
 
-	    // Return the checksum in bytes
-	    System.out.println(sum);
+	    // Return the checksum in String
 	    String chk = Integer.toBinaryString((int) sum);
-	    System.out.println(chk);
 	    return chk;
 
 	}
