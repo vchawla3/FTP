@@ -69,6 +69,8 @@ public class Server {
 					int senderIP = rec.getPort();
 
 					//check the checksum && make sure seq and curseq line up && make sure type is correct
+					System.out.println(expectedSeq == seqNumber);
+					System.out.println(dataPacketValue.equals(expectedDataPacketValue));
 					if (computeChecksum(data, checksum) && expectedSeq == seqNumber && dataPacketValue.equals(expectedDataPacketValue)) {
 						//should expect next sequence number now
 						expectedSeq++;
@@ -160,7 +162,7 @@ public class Server {
 	    sum = sum & 0xFFFF;
 
 	    //System.out.println(sum);
-	    System.out.println(checksum == ( int )sum);
+	    //System.out.println(checksum == ( int )sum);
 
 	    // See if they are the same 
 	    return checksum == ( int )sum;
@@ -182,7 +184,7 @@ public class Server {
 	//           0101010101010101
 	private static String getDataPacketIndicator(byte[] array) {
 		String s = new String(Arrays.copyOfRange(array, 48, 64));	
-		System.out.println(s);
+		//System.out.println(s);
 		return s;
 	}
 }
