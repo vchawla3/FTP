@@ -226,7 +226,7 @@ public class Client {
 	    sum = ~sum;
 	    sum = sum & 0xFFFF;
 
-	    //System.out.println(sum);
+	    System.out.println(sum);
 	    //System.out.println(checksum);
 
 	    // Return the checksum in String

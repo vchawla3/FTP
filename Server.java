@@ -168,7 +168,6 @@ public class Server {
 	    sum = sum & 0xFFFF;
 
 	    System.out.println(sum);
-	    System.out.println(checksum);
 	    //System.out.println(checksum == ( int )sum);
 
 	    // See if they are the same 
@@ -183,7 +182,7 @@ public class Server {
 
 	private static int getCheckSum(byte[] array) {
 		String s = new String(Arrays.copyOfRange(array, 32, 48));
-		//System.out.println(s);
+		System.out.println(s);
 		return Integer.parseInt(s, 2);
 	}
 
