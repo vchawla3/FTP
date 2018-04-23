@@ -106,7 +106,7 @@ public class Client {
 
 					byte[] ackdata = ackDGPacket.getData();
 
-					int ackSeqNo = Integer.parseInt(new String(Arrays.copyOfRange(ackdata, 0, 31)));
+					int ackSeqNo = Integer.parseInt(new String(Arrays.copyOfRange(ackdata, 0, 32)),2);
 					
         			String isACK = new String(Arrays.copyOfRange(ackdata, 32, 64));
         			System.out.println(ackSeqNo);

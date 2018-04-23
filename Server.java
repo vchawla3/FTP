@@ -75,14 +75,14 @@ public class Server {
 
 					//System.out.println(dataPacketValue.equals(expectedDataPacketValue));
 					if (computeChecksum(data, checksum) && expectedSeq == seqNumber && dataPacketValue.equals(expectedDataPacketValue)) {
+						//should expect next sequence number now
+						expectedSeq++;
+
 						//Now all is good, write to the file and send the ack
 						fw.write(data);
 
 						//send and generate ack to this IP and port
 						generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
-
-						//should expect next sequence number now
-						expectedSeq++;
 					} else {
 						//an issue so do not generate ack
 						System.out.println("Error in Packet, No Ack generated");
