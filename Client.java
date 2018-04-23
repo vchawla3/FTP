@@ -170,10 +170,12 @@ public class Client {
 			//Make sequence number a binary string representation, needs padding to make 48 0 bits and then the expected ack value
 			String binaryString = expectedENDPacketValue;
 			String pad = "";
-			for(int i = 0; i < 48 - binaryString.length(); i++) {
+			for(int i = 0; i < 48; i++) {
 				pad += "0";
 			}
 			binaryString = pad + binaryString;
+
+			//System.out.println(binaryString);
 
 			byte[] send = (binaryString).getBytes();
 			
