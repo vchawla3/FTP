@@ -86,7 +86,7 @@ public class Server {
 						generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 					} else {
 						//an issue so do not generate ack
-						System.out.println("Error in Packet, No Ack generated");
+						//System.out.println("Error in Packet, No Ack generated");
 					}
 
 					
@@ -95,6 +95,7 @@ public class Server {
 					System.out.println("Packet loss, Sequence number= " + seqNumber);
 				}
 			}	
+			fw.flush();
 			fw.close();
 			System.out.println(filename + " has downloaded");		
 		} catch(Exception e) {
@@ -183,7 +184,7 @@ public class Server {
 
 	private static int getCheckSum(byte[] array) {
 		String s = new String(Arrays.copyOfRange(array, 32, 48));
-		System.out.println(s);
+		//System.out.println(s);
 		return Integer.parseInt(s, 2);
 	}
 

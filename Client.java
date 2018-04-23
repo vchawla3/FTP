@@ -74,7 +74,7 @@ public class Client {
 					j+=mss;	
 				}
 	          	splitFile.add(data);
-	          	System.out.println(data);
+	          	//System.out.println(data);
 			}
 			System.out.println("File split up into " + sequenceMax + " ");
 		} catch (Exception ex) {
@@ -148,7 +148,8 @@ public class Client {
 			binaryString = pad + binaryString;
 			
 			String checksum = computeChecksum(data);
-			
+
+
 			byte[] header = (binaryString + checksum + expectedDataPacketValue).getBytes();
 			
 			//combine header and file data into one array
@@ -225,12 +226,17 @@ public class Client {
 	    sum = ~sum;
 	    sum = sum & 0xFFFF;
 
-	    System.out.println(sum);
+	    //System.out.println(sum);
 	    //System.out.println(checksum);
 
 	    // Return the checksum in String
-	    String chk = String.format("%016d", Integer.parseInt(Integer.toBinaryString(sum)));
-	    return chk;
-
+	    String chk = Integer.toBinaryString(sum);
+	    
+	    //pad with 0s to make it 16 bits
+	    String pad = "";
+		for(int j = 0; j < 16 - chk.length(); j++) {
+			pad += "0";
+		}
+	    return pad + chk;
 	}
 }
