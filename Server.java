@@ -50,7 +50,7 @@ public class Server {
 				double random = Math.random();
 			
 				// Get other headers
-          		String checksum = getCheckSum(receivedData);
+          		int checksum = getCheckSum(receivedData);
           		String dataPacketValue = getDataPacketIndicator(receivedData);
 
 	          	//Check if dataPacket is a endpacket
@@ -123,7 +123,7 @@ public class Server {
 	}
 
 	// Used this for reference - https://stackoverflow.com/questions/4113890/how-to-calculate-the-internet-checksum-from-a-byte-in-java
-	private static boolean computeChecksum(byte[] buf, String checksum) {
+	private static boolean computeChecksum(byte[] buf, int checksum) {
 	    int length = buf.length;
 	    int i = 0;
 
@@ -163,15 +163,16 @@ public class Server {
 	    System.out.println(checksum);
 
 	    // See if they are the same 
-	    return Long.parseLong(checksum) == sum;
+	    return checksum == ( int )sum;
 
 	}
 	private static int getSeqNumber(byte[] array) {
 		return Integer.parseInt(new String(Arrays.copyOfRange(array, 0, 31)));
 	}
 
-	private static String getCheckSum(byte[] array) {
-		return new String(Arrays.copyOfRange(array, 32, 47));
+	private static int getCheckSum(byte[] array) {
+		String s = new String(Arrays.copyOfRange(array, 32, 47));
+		return Integer.parseInt(s, 2);
 	}
 
 	// Should be 0101010101010101 

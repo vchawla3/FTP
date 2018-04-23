@@ -126,59 +126,8 @@ public class Client {
 				}
 				
 			}
+			//sendFinish();
 			System.out.println("File done sending");
-
-			// //looping thru whole file
-			// for(currSequenceNum = 0; currSequenceNum < splitFile.size();) {
-			// 	//send window size amount
-			// 	for(int i = 0; i < windowSizeN; i++){
-			// 		byte[] data = splitFile.get(currSequenceNum);
-			// 		rdt_send(currSequenceNum, data);
-			// 		currSequenceNum++;
-			// 	}
-
-			// 	byte [] receiveacks = new byte[2048];
-   //          	DatagramPacket ackDGPacket = new DatagramPacket(receiveacks,2048);
-
-   //          	clientToServer.setSoTimeout(100L);
-   //          	boolean loop = true;
-   //          	while(loop) {
-   //          		int curack = -1;
-	  //           	try {
-	  //       			clientToServer.receive(ackDGPacket);
-	  //       			byte[] ackdata = ackDGPacket.getData();
-	  //       			//TODO: binary to decimal??
-	  //       			curack = Integer.parseInt(new String(Arrays.copyOfRange(ackdata, 0, 31)));
-	  //       			String isACK = new String(Arrays.copyOfRange(ackdata, 32, 63));
-	  //       			if (isACK.equals(ackPacket)) {
-	  //       				//confirmed it is an ack packet
-	  //       				if(curack == currSequenceNum){
-	  //       					//if the ack is the most recent one chosen
-	  //       					loop = false;
-	  //       				}
-	  //       			}
-	       				
-	  //   			} catch (SocketTimeoutException e) {
-	  //      				 // no response received after 100 millisecond
-	  //   				loop = false;
-	  //   				if (curack != -1){
-	  //   					//as long as some ack was received, set curseqnumber to the most up to date ack received, so it will send 
-	  //   					currSequenceNum = curack;
-	  //   				}
-	  //   				System.out.println("Timeout, sequence number = " + curack);
-	  //   			}            		
-   //          	}
-
-
-			// 	// if (currSequenceNum > baseSequenceNum) {
-			// 	// 	//Sm = (Sm - Sb) + Rn
-			// 	// 	sequenceMax = sequenceMax - baseSequenceNum + currSequenceNum;
-			// 	// 	//Sb = Rn
-			// 	// 	baseSequenceNum = currSequenceNum;
-			// 	// } else {
-
-			// 	// }
-			// }
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -253,15 +202,10 @@ public class Client {
 	    //System.out.println(checksum);
 
 	    // Return the checksum in bytes
-	    //System.out.println(sum);
-	    //System.out.println(longToBytes(sum));
-	    return Long.toString(sum);
+	    System.out.println(sum);
+	    String chk = Integer.toBinaryString((int) sum);
+	    System.out.println(chk);
+	    return chk;
 
-	}
-
-	private static byte[] longToBytes(long x) {
-    	ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
-    	buffer.putLong(x);
-    	return buffer.array();
 	}
 }
