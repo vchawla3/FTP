@@ -171,7 +171,7 @@ public class Server {
 
 	}
 	private static int getSeqNumber(byte[] array) {
-		int s = Integer.parseInt(new String(Arrays.copyOfRange(array, 0, 32))); 
+		int s = Integer.parseInt(new String(Arrays.copyOfRange(array, 0, 32)),2); 
 		//System.out.println(s);
 		return s;
 	}
