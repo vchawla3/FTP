@@ -159,8 +159,8 @@ public class Server {
 	    sum = ~sum;
 	    sum = sum & 0xFFFF;
 
-	    //System.out.println(sum);
-	    //System.out.println(checksum);
+	    System.out.println(sum);
+	    System.out.println(checksum);
 
 	    // See if they are the same 
 	    return Long.parseLong(checksum) == sum;
