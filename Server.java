@@ -13,7 +13,7 @@ public class Server {
 	static final String ackPacket = "00000000000000001010101010101010";
 	static final String expectedENDPacketValue = "1111111110000000";
 
-	static int expectedSeq = 0;
+	//static int expectedSeq = 0;
 	// static int senderPort;
  //    static InetAddress senderIP;
 
@@ -34,6 +34,7 @@ public class Server {
 
 	public static void handleFTP(DatagramSocket ssock) {
 		try {
+			int expectedSeq = 0;
 			FileOutputStream fw = new FileOutputStream(filename);
 			boolean loop = true;
 
