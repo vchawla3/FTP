@@ -69,7 +69,9 @@ public class Server {
 					int senderIP = rec.getPort();
 
 					//check the checksum && make sure seq and curseq line up && make sure type is correct
-					System.out.println(expectedSeq == seqNumber);
+					System.out.println(expectedSeq);
+					System.out.println(seqNumber);
+					
 					System.out.println(dataPacketValue.equals(expectedDataPacketValue));
 					if (computeChecksum(data, checksum) && expectedSeq == seqNumber && dataPacketValue.equals(expectedDataPacketValue)) {
 						//should expect next sequence number now
