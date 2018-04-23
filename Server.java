@@ -168,6 +168,7 @@ public class Server {
 	    sum = sum & 0xFFFF;
 
 	    System.out.println(sum);
+	    System.out.println( new String(buf));
 	    //System.out.println(checksum == ( int )sum);
 
 	    // See if they are the same 
