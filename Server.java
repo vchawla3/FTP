@@ -54,7 +54,6 @@ public class Server {
           		int checksum = getCheckSum(receivedData);
           		String dataPacketValue = getDataPacketIndicator(receivedData);
 				
-				System.out.println(dataPacketValue);
 	          	//Check if dataPacket is a endpacket
 	          	if (dataPacketValue.equals(expectedENDPacketValue)) {
           			//connection done sending file, connection over
@@ -168,7 +167,8 @@ public class Server {
 	    sum = ~sum;
 	    sum = sum & 0xFFFF;
 
-	    //System.out.println(sum);
+	    System.out.println(sum);
+	    System.out.println(checksum);
 	    //System.out.println(checksum == ( int )sum);
 
 	    // See if they are the same 

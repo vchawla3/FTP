@@ -74,6 +74,7 @@ public class Client {
 					j+=mss;	
 				}
 	          	splitFile.add(data);
+	          	System.out.println(data);
 			}
 			System.out.println("File split up into " + sequenceMax + " ");
 		} catch (Exception ex) {
@@ -145,9 +146,10 @@ public class Client {
 				pad += "0";
 			}
 			binaryString = pad + binaryString;
-
+			
 			String checksum = computeChecksum(data);
-
+			
+			
 			byte[] header = (binaryString + checksum + expectedDataPacketValue).getBytes();
 			
 			//combine header and file data into one array
