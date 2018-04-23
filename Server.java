@@ -159,8 +159,8 @@ public class Server {
 	    sum = ~sum;
 	    sum = sum & 0xFFFF;
 
-	    System.out.println(sum);
-	    System.out.println(checksum);
+	    //System.out.println(sum);
+	    System.out.println(checksum == ( int )sum);
 
 	    // See if they are the same 
 	    return checksum == ( int )sum;
@@ -179,6 +179,7 @@ public class Server {
 	}
 
 	// Should be 0101010101010101 
+	//           0101010101010101
 	private static String getDataPacketIndicator(byte[] array) {
 		String s = new String(Arrays.copyOfRange(array, 48, 64));	
 		System.out.println(s);
