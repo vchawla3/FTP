@@ -80,13 +80,15 @@ public class Server {
 
 						//Now all is good, write to the file and send the ack
 						fw.write(data);
+
+						//send and generate ack to this IP and port
+						generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 					} else {
-						//an issue so resend previous ack and DO NOT WRITE
-						System.out.println("Error in Packet, Sending ACK of old");
+						//an issue so do not generate ack
+						System.out.println("Error in Packet, No Ack generated");
 					}
 
-					//send and generate ack to this IP and port
-					generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
+					
 				} else {
 					//r <= prob so packet loss!!!!
 					System.out.println("Packet loss, Sequence number= " + seqNumber);
