@@ -61,7 +61,7 @@ public class Server {
           			loop = false;
 	          	} else if (random > prob) {
 	          		// Rest of the data
-	          		byte[] data = Arrays.copyOfRange(receivedData, 63,receivedData.length);
+	          		byte[] data = Arrays.copyOfRange(receivedData, 64,receivedData.length);
 
 	          		//checksum must include IP source and dest and type and data
 	          		//byte[] checksumData = new byte[16 + data.length];

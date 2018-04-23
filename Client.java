@@ -149,7 +149,6 @@ public class Client {
 			
 			String checksum = computeChecksum(data);
 			
-			
 			byte[] header = (binaryString + checksum + expectedDataPacketValue).getBytes();
 			
 			//combine header and file data into one array
@@ -230,7 +229,7 @@ public class Client {
 	    //System.out.println(checksum);
 
 	    // Return the checksum in String
-	    String chk = Integer.toBinaryString(sum);
+	    String chk = String.format("%016d", Integer.parseInt(Integer.toBinaryString(sum)));
 	    return chk;
 
 	}
