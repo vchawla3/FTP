@@ -194,8 +194,8 @@ public class Client {
 	    int length = buf.length;
 	    int i = 0;
 
-	    long sum = 0;
-	    long data;
+	    int sum = 0;
+	    int data;
 
 	    // Handle all pairs
 	    while (length > 1) {
@@ -230,7 +230,7 @@ public class Client {
 	    //System.out.println(checksum);
 
 	    // Return the checksum in String
-	    String chk = Integer.toBinaryString((int) sum);
+	    String chk = Integer.toBinaryString(sum);
 	    return chk;
 
 	}

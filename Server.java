@@ -135,8 +135,8 @@ public class Server {
 	    int length = buf.length;
 	    int i = 0;
 
-	    long sum = 0;
-	    long data;
+	    int sum = 0;
+	    int data;
 
 	    // Handle all pairs
 	    while (length > 1) {
@@ -168,10 +168,11 @@ public class Server {
 	    sum = sum & 0xFFFF;
 
 	    System.out.println(sum);
+	    System.out.println( new String(buf));
 	    //System.out.println(checksum == ( int )sum);
 
 	    // See if they are the same 
-	    return checksum == ( int )sum;
+	    return checksum == sum;
 
 	}
 	private static int getSeqNumber(byte[] array) {
