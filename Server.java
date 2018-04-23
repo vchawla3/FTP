@@ -11,6 +11,8 @@ public class Server {
 	static double prob;
 	static final String expectedDataPacketValue = "0101010101010101";
 	static final String ackPacket = "00000000000000001010101010101010";
+	static final String expectedENDPacketValue = "1111111110000000";
+
 	static int expectedSeq = 0;
 	// static int senderPort;
  //    static InetAddress senderIP;
@@ -46,19 +48,26 @@ public class Server {
 
 				//Random generator
 				double random = Math.random();
-				if (random > prob) {
-					// Get other headers
-	          		String checksum = getCheckSum(receivedData);
-	          		String dataPacketValue = getDataPacketIndicator(receivedData);
+			
+				// Get other headers
+          		String checksum = getCheckSum(receivedData);
+          		String dataPacketValue = getDataPacketIndicator(receivedData);
 
+	          	//Check if dataPacket is a endpacket
+	          	if (dataPacketValue.equals(expectedENDPacketValue)) {
+          			//connection done sending file, connection over
+          			loop = false;
+	          	} else if (random > prob) {
 	          		// Rest of the data
 	          		byte[] data = Arrays.copyOfRange(receivedData, 64,receivedData.length);
 
 	          		//checksum must include IP source and dest and type and data
 	          		//byte[] checksumData = new byte[16 + data.length];
 
+	          		//Get IP and port to respond too
 	          		InetAddress senderPort = rec.getAddress();
 					int senderIP = rec.getPort();
+
 					//check the checksum && make sure seq and curseq line up && make sure type is correct
 					if (computeChecksum(data, checksum) && expectedSeq == seqNumber && dataPacketValue.equals(expectedDataPacketValue)) {
 						//should expect next sequence number now
@@ -70,6 +79,8 @@ public class Server {
 						//an issue so resend previous ack and DO NOT WRITE
 						System.out.println("Error in Packet, Sending ACK of old");
 					}
+
+					//send and generate ack to this IP and port
 					generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 				} else {
 					//r <= prob so packet loss!!!!
@@ -156,16 +167,16 @@ public class Server {
 
 	}
 	private static int getSeqNumber(byte[] array) {
-		return Integer.parseInt(new String(Arrays.copyOfRange(array, 0, 32)));
+		return Integer.parseInt(new String(Arrays.copyOfRange(array, 0, 31)));
 	}
 
 	private static String getCheckSum(byte[] array) {
-		return new String(Arrays.copyOfRange(array, 32, 48));
+		return new String(Arrays.copyOfRange(array, 32, 47));
 	}
 
 	// Should be 0101010101010101 
 	private static String getDataPacketIndicator(byte[] array) {
-		String s = new String(Arrays.copyOfRange(array, 48, 64));	
+		String s = new String(Arrays.copyOfRange(array, 48, 63));	
 		return s;
 	}
 }
