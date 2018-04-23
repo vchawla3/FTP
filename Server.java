@@ -167,17 +167,21 @@ public class Server {
 
 	}
 	private static int getSeqNumber(byte[] array) {
-		return Integer.parseInt(new String(Arrays.copyOfRange(array, 0, 31)));
+		int s = Integer.parseInt(new String(Arrays.copyOfRange(array, 0, 31))); 
+		System.out.println(s);
+		return s;
 	}
 
 	private static int getCheckSum(byte[] array) {
 		String s = new String(Arrays.copyOfRange(array, 32, 47));
+		System.out.println(s);
 		return Integer.parseInt(s, 2);
 	}
 
 	// Should be 0101010101010101 
 	private static String getDataPacketIndicator(byte[] array) {
 		String s = new String(Arrays.copyOfRange(array, 48, 63));	
+		System.out.println(s);
 		return s;
 	}
 }
