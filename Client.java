@@ -141,8 +141,6 @@ public class Client {
 	private static void rdt_send(int seq, byte[] data) {
 		try {
 			//Make sequence number a binary string representation, needs padding to make 32 bits
-			System.out.println("~WEBB~");
-			System.out.println(new String(data));
 
 			String binaryString = Integer.toBinaryString(seq);
 			String pad = "";
