@@ -26,7 +26,13 @@ Timeout set on Client: **100 ms**
 Click [Here](https://docs.google.com/spreadsheets/d/1yi312RJvs_x-Ckh5s_HkV73U5v2Zt9t0uBld9yhZwB0/edit?usp=sharing) to view the Google spreadsheet with our data and charts
 
 ## Task 1
+![data](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task1Table.png)
+![chart](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task1Chart.png)
 
 ## Task 2
+![data](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task2Table.png)
+![chart](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task2Chart.png)
 
 ## Task 3
+![data](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task3Table.png)
+![chart](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task3Chart.png)
