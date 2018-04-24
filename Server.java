@@ -62,7 +62,9 @@ public class Server {
           			loop = false;
 	          	} else if (random > prob) {
 	          		// Rest of the data
-	          		byte[] data = Arrays.copyOfRange(receivedData, 64,receivedData.length);
+	          		//byte[] data = Arrays.copyOfRange(receivedData, 64,receivedData.length);
+	          		byte[] data = new byte[rec.getLength() - 64];
+          			System.arraycopy(receivedData,64, data, 0, data.length);
 
 					//System.out.println(dataPacketValue.equals(expectedDataPacketValue));
 					if (computeChecksum(data, checksum) && expectedSeq == seqNumber && dataPacketValue.equals(expectedDataPacketValue)) {
@@ -70,7 +72,7 @@ public class Server {
 						expectedSeq++;
 
 						//Now all is good, write to the file and send the ack
-						System.out.println(new String(data));
+						//System.out.println(new String(data));
 						fw.write(new String(data));
 
 						//Get IP and port to respond too
