@@ -64,7 +64,8 @@ public class Server {
 	          		//byte[] data = Arrays.copyOfRange(receivedData, 64,receivedData.length);
 	          		
 	          		byte[] data = new byte[rec.getLength()-64];
-	          		System.arraycopy(receivedData,64, data,0,data.length);
+	          		System.arraycopy(receivedData, 64, data, 0, data.length);
+	          		System.out.println(new String(data));
 	          		//checksum must include IP source and dest and type and data
 	          		//byte[] checksumData = new byte[16 + data.length];
 
