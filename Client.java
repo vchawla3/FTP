@@ -69,7 +69,7 @@ public class Client {
 					data = Arrays.copyOfRange(filedata, j, filedata.length);
 				} else {
 					//always up to size mss
-					data = Arrays.copyOfRange(filedata, j, j+mss-1);
+					data = Arrays.copyOfRange(filedata, j, j+mss);
 					//increment by mss
 					j+=mss;	
 				}
@@ -140,7 +140,6 @@ public class Client {
 
 	private static void rdt_send(int seq, byte[] data) {
 		try {
-			//System.out.println(data);
 			//Make sequence number a binary string representation, needs padding to make 32 bits
 			String binaryString = Integer.toBinaryString(seq);
 			String pad = "";
@@ -150,7 +149,6 @@ public class Client {
 			binaryString = pad + binaryString;
 			
 			String checksum = computeChecksum(data);
-
 
 			byte[] header = (binaryString + checksum + expectedDataPacketValue).getBytes();
 			

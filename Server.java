@@ -35,8 +35,7 @@ public class Server {
 	public static void handleFTP(DatagramSocket ssock) {
 		try {
 			int expectedSeq = 0;
-			//FileOutputStream fw = new FileOutputStream(filename);
-			FileWriter fw = new FileWriter(filename);
+			FileOutputStream fw = new FileOutputStream(filename);
 			boolean loop = true;
 
 			while(loop) {
@@ -62,19 +61,7 @@ public class Server {
           			loop = false;
 	          	} else if (random > prob) {
 	          		// Rest of the data
-	          		//byte[] data = Arrays.copyOfRange(receivedData, 64,receivedData.length);
-	          		
-	          		byte[] data = new byte[rec.getLength()-64];
-	          		System.arraycopy(receivedData, 64, data, 0, data.length);
-	          		System.out.println(new String(data));
-	          		//checksum must include IP source and dest and type and data
-	          		//byte[] checksumData = new byte[16 + data.length];
-
-	          		
-
-					//check the checksum && make sure seq and curseq line up && make sure type is correct
-					//System.out.println(expectedSeq);
-					//System.out.println(seqNumber);
+	          		byte[] data = Arrays.copyOfRange(receivedData, 64,receivedData.length);
 
 					//System.out.println(dataPacketValue.equals(expectedDataPacketValue));
 					if (computeChecksum(data, checksum) && expectedSeq == seqNumber && dataPacketValue.equals(expectedDataPacketValue)) {
@@ -82,7 +69,7 @@ public class Server {
 						expectedSeq++;
 
 						//Now all is good, write to the file and send the ack
-						fw.write(new String(data));
+						fw.write(data);
 
 						//Get IP and port to respond too
 	          			InetAddress senderPort = rec.getAddress();
