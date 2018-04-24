@@ -80,7 +80,7 @@ public class Server {
 						//Get IP and port to respond too
 	          			InetAddress senderPort = rec.getAddress();
 						int senderIP = rec.getPort();
-						//an issue so do not generate ack
+						//an issue so do not generate new ack, just the one we need still
 						generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 					}
 					

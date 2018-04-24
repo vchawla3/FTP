@@ -20,7 +20,7 @@ Click [Here](https://github.ncsu.edu/vchawla3/573_FTP) to access ncsu the reposi
 
 File: **data.txt**  
 File Size: **1.204631 MegaBytes**  
-RTT to Server IP (159.65.229.221 for us) from Traceroute: **22.24933333 seconds** (Avg of 3 values outputted from Traceroute)  
+RTT to Server IP (159.65.229.221 for us) from Traceroute: **22.24933333 seconds** (Avg of 3 values outputted from Traceroute [here](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/traceroute.png))  
 Timeout set on Client: **100 ms**  
 
 Click [Here](https://docs.google.com/spreadsheets/d/1yi312RJvs_x-Ckh5s_HkV73U5v2Zt9t0uBld9yhZwB0/edit?usp=sharing) to view the Google spreadsheet with our data and charts
@@ -35,9 +35,10 @@ For this task, we can see that as the Window Size N increases, the average delay
 ![data](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task2Table.png)
 ![chart](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task2Chart.png)
 
-For this task, we can see from the chart that as the MSS goes up, the average delay goes down at a linear rate. This makes sense as a big MSS would mean the file being sent is split into fewer segments, which means the sender has less packets to create and send to the server, which would obviously take less time compared to a smaller MSS.
+For this task, we can see from the chart that as the MSS goes up, the average delay goes down exponentially. This makes sense as a big MSS would mean the file being sent is split into fewer segments, which means the sender has less packets to create and send to the server, which would obviously take less time compared to a smaller MSS, which would result in a greater number of packets. Theoretically, if the MSS was big enough, it could fit the entire file and simply transmit that file in one packet.
 
 ## Task 3
 ![data](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task3Table.png)
 ![chart](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task3Chart.png)
 
+For this task, we can see from the chart that as the probability goes up, the average delay goes up somewhat linearly. This makes sense, as a higher probability would mean the server/reciever would discard more incoming packets, which then on the client's side, more timeouts would occur, which would lead to more retransmissions. All of these retransmissions would then cause the delay of sending the file to also increase. 
