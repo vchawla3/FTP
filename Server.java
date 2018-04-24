@@ -81,6 +81,7 @@ public class Server {
 						expectedSeq++;
 
 						//Now all is good, write to the file and send the ack
+						fw.flush();
 						fw.write(data);
 
 						//Get IP and port to respond too
