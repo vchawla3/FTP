@@ -86,7 +86,8 @@ public class Server {
 					//r <= prob so packet loss!!!!
 					System.out.println("Packet loss, Sequence number = " + seqNumber);
 				}
-			}	
+			}
+			fw.flush();	
 			fw.close();
 			System.out.println(filename + " has downloaded");		
 		} catch(Exception e) {
