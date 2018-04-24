@@ -14,7 +14,7 @@ Click [Here](https://github.ncsu.edu/vchawla3/573_FTP) to access ncsu the reposi
   * Runs the server on localhost
 * Client: `java Client [server-host-name] [server-port#] [file-name] [N] [MSS]`
   * No interaction, will simply output whenever Timeout occurs and at what sequence number it occurred at
-  * Will also nofity/print once the file is finished sending, print delay time it took, and then exit.
+  * Will also nofity/print once the file is finished sending, print delay time it took in nanoseconds, and then exit.
 
 # Report and Task Data
 
