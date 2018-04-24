@@ -18,10 +18,10 @@ Click [Here](https://github.ncsu.edu/vchawla3/573_FTP) to access ncsu the reposi
 
 # Report and Task Data
 
-File: *data.txt*  
-File Size: *1.204631 MegaBytes*  
-RTT to Server IP (159.65.229.221 for us) from Traceroute: *22.24933333 seconds* (Avg of 3 values outputted from Traceroute)  
-Timeout set on Client: 100 ms  
+File: **data.txt**  
+File Size: **1.204631 MegaBytes**  
+RTT to Server IP (159.65.229.221 for us) from Traceroute: **22.24933333 seconds** (Avg of 3 values outputted from Traceroute)  
+Timeout set on Client: **100 ms**  
 
 Click [Here](https://docs.google.com/spreadsheets/d/1yi312RJvs_x-Ckh5s_HkV73U5v2Zt9t0uBld9yhZwB0/edit?usp=sharing) to view the Google spreadsheet with our data and charts
 
