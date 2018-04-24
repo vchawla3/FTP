@@ -1,8 +1,8 @@
-# CSC 573 IP Project 2 - FTP
+# CSC 573 IP Project 2 Report - FTP
 Vaibhav Chawla (vchawla3)  
 Shikhar Sharma (ssharm29)
 
-Click [Here]() to access ncsu the repository and view the readme in a better format
+Click [Here](https://github.ncsu.edu/vchawla3/573_FTP) to access ncsu the repository and view the readme in a better format
 
 ### Compilation Instructions  
 `javac *.java`
@@ -16,6 +16,7 @@ Click [Here]() to access ncsu the repository and view the readme in a better for
   * No interaction, will simply output whenever Timeout occurs and at what sequence number it occurred at
   * Will also nofity/print once the file is finished sending, print delay time it took, and then exit.
 
+# Report and Task Data
 
 File: data.txt
 File Size: 1.204631 MegaBytes
