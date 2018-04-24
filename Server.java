@@ -13,10 +13,6 @@ public class Server {
 	static final String ackPacket = "00000000000000001010101010101010";
 	static final String expectedENDPacketValue = "1111111110000000";
 
-	//static int expectedSeq = 0;
-	// static int senderPort;
- //    static InetAddress senderIP;
-
 	public static void main(String args[]) {
 		try {
 			port = Integer.parseInt(args[0]);
@@ -35,7 +31,7 @@ public class Server {
 	public static void handleFTP(DatagramSocket ssock) {
 		try {
 			int expectedSeq = 0;
-			//FileOutputStream fw = new FileOutputStream(filename);
+
 			FileWriter fw = new FileWriter(filename);
 			boolean loop = true;
 
@@ -61,18 +57,17 @@ public class Server {
           			System.out.println("Final Segment recieved");
           			loop = false;
 	          	} else if (random > prob) {
-	          		// Rest of the data
-	          		//byte[] data = Arrays.copyOfRange(receivedData, 64,receivedData.length);
+	          		// Rest of the data, HAVE TO DO IT LIKE THIS OR YOU GET WEIRD BYTE CHARACTERS LEFT OVER THEN OUTPUT FILE WILL DIFFER!!!!
+	          		// For reference on finding weird byte characters https://unix.stackexchange.com/questions/45711/diff-reports-two-files-differ-although-they-are-the-same
+	          		// sed -n l filename --> will show you those characters
 	          		byte[] data = new byte[rec.getLength() - 64];
-          			System.arraycopy(receivedData,64, data, 0, data.length);
+          			System.arraycopy(receivedData, 64, data, 0, data.length);
 
 					//System.out.println(dataPacketValue.equals(expectedDataPacketValue));
 					if (computeChecksum(data, checksum) && expectedSeq == seqNumber && dataPacketValue.equals(expectedDataPacketValue)) {
 						//should expect next sequence number now
 						expectedSeq++;
 
-						//Now all is good, write to the file and send the ack
-						//System.out.println(new String(data));
 						fw.write(new String(data));
 
 						//Get IP and port to respond too
@@ -83,7 +78,6 @@ public class Server {
 						generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 					} else {
 						//an issue so do not generate ack
-						//System.out.println("Error in Packet, No Ack generated");
 					}
 					
 				} else {
@@ -91,14 +85,11 @@ public class Server {
 					System.out.println("Packet loss, Sequence number = " + seqNumber);
 				}
 			}
-			//fw.flush();	
 			fw.close();
 			System.out.println(filename + " has downloaded");		
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-
-
 	}
 
 	private static void generateAndSendACK(DatagramSocket ssock, int seq, int senderPort, InetAddress senderIP) {
@@ -163,10 +154,6 @@ public class Server {
 	    // Final 1's complement value correction to 16-bits
 	    sum = ~sum;
 	    sum = sum & 0xFFFF;
-
-	    //System.out.println(sum);
-	    //System.out.println( new String(buf));
-	    //System.out.println(checksum == ( int )sum);
 
 	    // See if they are the same 
 	    return checksum == sum;
