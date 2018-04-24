@@ -80,7 +80,7 @@ public class Client {
 	          	splitFile.add(data);
 	          	//System.out.println(data);
 			}
-			System.out.println("File split up into " + sequenceMax + " ");
+			//System.out.println("File split up into " + sequenceMax + " ");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}		
@@ -105,7 +105,7 @@ public class Client {
          		DatagramPacket ackDGPacket = new DatagramPacket(receiveacks,2048);
 				
 				try {
-					//50 millisecond timeout
+					//100 millisecond timeout
 					clientToServer.setSoTimeout(100);
 					clientToServer.receive(ackDGPacket);
 
@@ -165,7 +165,7 @@ public class Client {
 
 			DatagramPacket dataPack = new DatagramPacket(send, send.length, InetAddress.getByName(serverHost), serverPort);
 			clientToServer.send(dataPack);
-			System.out.println("Sent segment number " + seq);
+			//System.out.println("Sent segment number " + seq);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -188,7 +188,7 @@ public class Client {
 			
 			DatagramPacket dataPack = new DatagramPacket(send, send.length, InetAddress.getByName(serverHost), serverPort);
 			clientToServer.send(dataPack);
-			System.out.println("Sent finish segment!!");
+			//System.out.println("Sent finish segment!!");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
