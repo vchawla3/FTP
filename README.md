@@ -29,12 +29,15 @@ Click [Here](https://docs.google.com/spreadsheets/d/1yi312RJvs_x-Ckh5s_HkV73U5v2
 ![data](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task1Table.png)
 ![chart](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task1Chart.png)  
 
-For this task, we can see that as the Window Size N increases, the average delay at first speeds up by a lot, but as N gets bigger, the average delay plateaus and in the long run it seems like it can actually be detrimental to the average delay. It makes sense that the delay would not be substantially better with a large N because whenever a timeout occurs, the sender has to **retransmit** a large amount of packets from a loss of simply 1 packet which would increase the overall time to send.
+For this task, we can see that as the Window Size N increases, the average delay at first speeds up by a lot, but as N gets bigger, the average delay plateaus and in the long run it seems like it can actually be detrimental to the average delay. It makes sense that the delay would not be substantially better with a large N because whenever a timeout occurs, the sender has to **retransmit** a large amount of packets from a loss of simply 1 packet which would increase the overall time to send the entire file.
 
 ## Task 2
 ![data](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task2Table.png)
 ![chart](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task2Chart.png)
 
+For this task, we can see from the chart that as the MSS goes up, the average delay goes down at a linear rate. This makes sense as a big MSS would mean the file being sent is split into fewer segments, which means the sender has less packets to create and send to the server, which would obviously take less time compared to a smaller MSS.
+
 ## Task 3
 ![data](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task3Table.png)
 ![chart](https://github.ncsu.edu/vchawla3/573_FTP/blob/master/TaskResults/Task3Chart.png)
+
