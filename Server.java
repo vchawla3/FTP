@@ -81,7 +81,6 @@ public class Server {
 						//an issue so do not generate ack
 						//System.out.println("Error in Packet, No Ack generated");
 					}
-
 					
 				} else {
 					//r <= prob so packet loss!!!!
