@@ -98,7 +98,7 @@ public class Client {
 				}
 				byte [] receiveacks = new byte[2048];
          		DatagramPacket ackDGPacket = new DatagramPacket(receiveacks,2048);
-				
+				int ackSeqNo = -1;
 				try {
 					//50 millisecond timeout
 					clientToServer.setSoTimeout(50);
@@ -106,7 +106,7 @@ public class Client {
 
 					byte[] ackdata = ackDGPacket.getData();
 
-					int ackSeqNo = Integer.parseInt(new String(Arrays.copyOfRange(ackdata, 0, 32)),2);
+					ackSeqNo = Integer.parseInt(new String(Arrays.copyOfRange(ackdata, 0, 32)),2);
 					
         			String isACK = new String(Arrays.copyOfRange(ackdata, 32, 64));
         			if (isACK.equals(ackPacket)) {
@@ -120,6 +120,7 @@ public class Client {
         			}
 				} catch (SocketTimeoutException ex) {
 					//resend packets from latestacked till current seq sent
+					System.out.println("Timeout, sequence number = " + ackSeqNo);
 					int i = latestAckedSeqNo;
 					while(i < currSequenceNum){
 						byte[] data = splitFile.get(i);
