@@ -70,6 +70,7 @@ public class Server {
 						expectedSeq++;
 
 						//Now all is good, write to the file and send the ack
+						System.out.println(new String(data));
 						fw.write(new String(data));
 
 						//Get IP and port to respond too
