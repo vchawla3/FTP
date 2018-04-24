@@ -61,14 +61,14 @@ public class Server {
           			loop = false;
 	          	} else if (random > prob) {
 	          		// Rest of the data
-	          		byte[] data = Arrays.copyOfRange(receivedData, 64,receivedData.length);
-
+	          		//byte[] data = Arrays.copyOfRange(receivedData, 64,receivedData.length);
+	          		
+	          		byte[] data = new byte[rec.getLength()-64];
+	          		System.arraycopy(receivedData,64, data,0,data.length);
 	          		//checksum must include IP source and dest and type and data
 	          		//byte[] checksumData = new byte[16 + data.length];
 
-	          		//Get IP and port to respond too
-	          		InetAddress senderPort = rec.getAddress();
-					int senderIP = rec.getPort();
+	          		
 
 					//check the checksum && make sure seq and curseq line up && make sure type is correct
 					//System.out.println(expectedSeq);
@@ -82,6 +82,10 @@ public class Server {
 						//Now all is good, write to the file and send the ack
 						fw.write(data);
 
+						//Get IP and port to respond too
+	          			InetAddress senderPort = rec.getAddress();
+						int senderIP = rec.getPort();
+
 						//send and generate ack to this IP and port
 						generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 					} else {
@@ -92,7 +96,7 @@ public class Server {
 					
 				} else {
 					//r <= prob so packet loss!!!!
-					System.out.println("Packet loss, Sequence number= " + seqNumber);
+					System.out.println("Packet loss, Sequence number = " + seqNumber);
 				}
 			}	
 			fw.flush();
