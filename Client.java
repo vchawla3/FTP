@@ -87,6 +87,7 @@ public class Client {
 
 			ArrayList<Integer> seqNumbersSent = new ArrayList<Integer>(windowSizeN);
 			
+			int ackSeqNo = 0;
 			boolean loop = true;
 			while(loop) {
 				while (currSequenceNum - latestAckedSeqNo < windowSizeN && currSequenceNum < sequenceMax) {
@@ -98,7 +99,7 @@ public class Client {
 				}
 				byte [] receiveacks = new byte[2048];
          		DatagramPacket ackDGPacket = new DatagramPacket(receiveacks,2048);
-				int ackSeqNo = -1;
+				
 				try {
 					//50 millisecond timeout
 					clientToServer.setSoTimeout(50);
