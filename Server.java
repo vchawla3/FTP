@@ -77,7 +77,11 @@ public class Server {
 						//send and generate ack to this IP and port
 						generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 					} else {
+						//Get IP and port to respond too
+	          			InetAddress senderPort = rec.getAddress();
+						int senderIP = rec.getPort();
 						//an issue so do not generate ack
+						generateAndSendACK(ssock, expectedSeq, senderIP, senderPort);
 					}
 					
 				} else {
