@@ -38,7 +38,11 @@ public class Client {
 			sequenceMax = windowSizeN + 1;
 
 			split_file();
-			gobackn();
+
+			long startTime = System.nanoTime();
+			rdt_send();
+			long estimatedTime = System.nanoTime() - startTime;
+			System.out.println("Delay is " + estimatedTime);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -81,7 +85,7 @@ public class Client {
 			ex.printStackTrace();
 		}		
 	}
-	private static void gobackn() {
+	private static void rdt_send() {
 		try {
 			clientToServer = new DatagramSocket();
 
@@ -92,7 +96,7 @@ public class Client {
 			while(loop) {
 				while (currSequenceNum - latestAckedSeqNo < windowSizeN && currSequenceNum < sequenceMax) {
 					byte[] data = splitFile.get(currSequenceNum);
-					rdt_send(currSequenceNum, data);
+					send_data(currSequenceNum, data);
 					//Keep track of the ones sent
 					seqNumbersSent.add(currSequenceNum);
 					currSequenceNum++;
@@ -125,7 +129,7 @@ public class Client {
 					int i = latestAckedSeqNo;
 					while(i < currSequenceNum){
 						byte[] data = splitFile.get(i);
-						rdt_send(i, data);
+						send_data(i, data);
 						i++;
 					}
 				}
@@ -138,7 +142,7 @@ public class Client {
 		}
 	}
 
-	private static void rdt_send(int seq, byte[] data) {
+	private static void send_data(int seq, byte[] data) {
 		try {
 			//Make sequence number a binary string representation, needs padding to make 32 bits
 
