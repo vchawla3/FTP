@@ -102,7 +102,7 @@ public class Client {
 				
 				try {
 					//50 millisecond timeout
-					clientToServer.setSoTimeout(50);
+					clientToServer.setSoTimeout(100);
 					clientToServer.receive(ackDGPacket);
 
 					byte[] ackdata = ackDGPacket.getData();
@@ -141,6 +141,9 @@ public class Client {
 	private static void rdt_send(int seq, byte[] data) {
 		try {
 			//Make sequence number a binary string representation, needs padding to make 32 bits
+			System.out.println("~WEBB~");
+			System.out.println(new String(data));
+
 			String binaryString = Integer.toBinaryString(seq);
 			String pad = "";
 			for(int i = 0; i < 32 - binaryString.length(); i++) {

@@ -35,7 +35,8 @@ public class Server {
 	public static void handleFTP(DatagramSocket ssock) {
 		try {
 			int expectedSeq = 0;
-			FileOutputStream fw = new FileOutputStream(filename);
+			//FileOutputStream fw = new FileOutputStream(filename);
+			FileWriter fw = new FileWriter(filename);
 			boolean loop = true;
 
 			while(loop) {
@@ -69,7 +70,7 @@ public class Server {
 						expectedSeq++;
 
 						//Now all is good, write to the file and send the ack
-						fw.write(data);
+						fw.write(new String(data));
 
 						//Get IP and port to respond too
 	          			InetAddress senderPort = rec.getAddress();
@@ -87,7 +88,7 @@ public class Server {
 					System.out.println("Packet loss, Sequence number = " + seqNumber);
 				}
 			}
-			fw.flush();	
+			//fw.flush();	
 			fw.close();
 			System.out.println(filename + " has downloaded");		
 		} catch(Exception e) {
